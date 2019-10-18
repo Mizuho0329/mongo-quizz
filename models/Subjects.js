@@ -6,11 +6,11 @@ const subjectSchema = new Schema({
   questions: [{
     id: { type: Schema.Types.ObjectId },
     question: String,
+    user_id: { type: Schema.Types.ObjectId },
     answers: [{
       answer: String,
       is_correct: Boolean
-    }],
-    user_id: { type: Schema.Types.ObjectId }
+    }]
   }]
 })
 
