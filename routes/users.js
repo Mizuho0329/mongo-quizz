@@ -1,11 +1,28 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const User = require('../models/UsersQuizz');
 const ObjectId = require('mongoose').Types.ObjectId;
 
-/* Lister les users de mongoQuizz*/
-router.get('/', function(req, res, next) {
-  User.find().limit(10).exec((err, users) => res.json(users));
+// /* Lister les users de mongoQuizz*/
+
+router.get('/', function (req, res, next) {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) ||10;
+    const skip = (page - 1) * limit;
+
+    User.countDocuments({}, (err, count) => {
+        User
+            .find(req.query.filters)
+            .skip(skip)
+            .limit(parseInt(limit) || 10)
+            .sort({name: 1})
+            .exec((err, users) => res.json({
+                count: count,
+                page: page,
+                limit: limit,
+                results: users
+            }));
+    });
 });
 
 /* Selectionner un user  */
