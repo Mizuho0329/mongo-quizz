@@ -4,7 +4,7 @@ const Subject = require('../models/Subjects');
 const ObjectId = require('mongoose').Types.ObjectId;
 
 /* GET subjects listing. */
-/* ex: .../subjects?limit=5&page=2 */
+/* ex: .../subjects?limit=5&page=2&filters[name]=Google */
 router.get('/', (req, res, next) => {
   const limit = parseInt(req.query.limit) || 10;
   const page = parseInt(req.query.page) || 1;
@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
 
   Subject.countDocuments({}, (err, count) => {
     Subject
-      .find()
+      .find(req.query.filters)
       .skip(skip)
       .limit(limit)
       .sort({name: 1})
