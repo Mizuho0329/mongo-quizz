@@ -4,9 +4,25 @@ const Subject = require('../models/Subjects');
 const ObjectId = require('mongoose').Types.ObjectId;
 
 /* GET subjects listing. */
+/* ex: .../subjects?limit=5&page=2 */
 router.get('/', (req, res, next) => {
-  Subject.find()
-    .exec((err, subjects) => res.json(subjects));
+  const limit = parseInt(req.query.limit) || 10;
+  const page = parseInt(req.query.page) || 1;
+  const skip = limit * (page - 1);
+
+  Subject.countDocuments({}, (err, count) => {
+    Subject
+      .find()
+      .skip(skip)
+      .limit(limit)
+      .sort({name: 1})
+      .exec((err, subjects) => res.json({
+        count: count,
+        limit: limit,
+        page: page,
+        results: subjects
+      }));
+  });
 });
 
 /* GET a subject by subject ID */
