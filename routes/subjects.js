@@ -11,16 +11,29 @@ router.get('/', (req, res, next) => {
 
 /* GET a subject by subject ID */
 router.get('/:id', (req, res, next) => {
-  console.log(req.params.id)
-  // Subject.findOne({_id: ObjectId(req.param.id)}, (err, subject) => res.json(subject))
   Subject.findById(req.params.id)
     .exec((err, subject) => res.json(subject));
 })
 
 /* POST a new subject*/
+router.post('/', (req, res, next) => {
+  let subject = new Subject(req.body);
+  subject.save((err, subject) => res.json(subject));
+})
 
 /* PUT a subject by ID */
+router.put('/:id', (req, res, next) => {
+  Subject.updateOne(
+    { _id : ObjectId(req.params.id) },
+    req.body,
+    (err, subject) => res.json(subject)
+  );
+})
 
 /* DELETE a subject by ID */
+router.delete('/:id', (req, res, next) => {
+  Subject.deleteOne({ _id : ObjectId(req.params.id) })
+    .exec((err, subject) => res.json(subject));
+})
 
 module.exports = router;
