@@ -1,0 +1,487 @@
+{
+	"info": {
+		"_postman_id": "7a4fc484-f0db-4793-98ea-457803e6e7ca",
+		"name": "Mongo-quizz",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "GET /users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"users"
+							]
+						},
+						"description": "liste des utilisateurs"
+					},
+					"response": []
+				},
+				{
+					"name": "POST /users",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"Henry\",\n    \"lastname\": \"Legrand\",\n    \"username\": \"HLegrand\",\n    \"email\": \"hlegrand@monastic.uk\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3002/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"users"
+							]
+						},
+						"description": "créer un nouvel utilisateur"
+					},
+					"response": []
+				},
+				{
+					"name": "GET /users/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/users/:id_user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"users",
+								":id_user"
+							],
+							"variable": [
+								{
+									"key": "id_user",
+									"value": "5dc82667d1c7c95650dd500a"
+								}
+							]
+						},
+						"description": "récupérer un utilisateur"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /users/:id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"firstname\":\"Henry\",\"lastname\":\"Michel\",\"username\":\"HLegrand\"}"
+						},
+						"url": {
+							"raw": "http://localhost:3002/users/:id_user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"users",
+								":id_user"
+							],
+							"variable": [
+								{
+									"key": "id_user",
+									"value": "5dc82667d1c7c95650dd500a"
+								}
+							]
+						},
+						"description": "mettre à jour un utilisateur"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /users/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/users/:id_user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"users",
+								":id_user"
+							],
+							"variable": [
+								{
+									"key": "id_user",
+									"value": "5dc82667d1c7c95650dd500a"
+								}
+							]
+						},
+						"description": "supprimer un utilisateur"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "questions",
+			"item": [
+				{
+					"name": "GET /questions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/questions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"questions"
+							]
+						},
+						"description": "liste des questions avec titre du sujet"
+					},
+					"response": []
+				},
+				{
+					"name": "POST /questions",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"question\" : \"Question ?\",\n\t\"answers\": [\n\t\t{\n\t\t\t\"answer\": \"VRAI\",\n\t\t\t\"is_correct\": true\n\t\t},\n\t\t{\n\t\t\t\"answer\": \"FAUX\",\n\t\t\t\"is_correct\": false\n\t\t}\n\t\t],\n\t\t \"user_id\": \"5dc9802680e25f57149501e4\",\n\t\t \"subject_id\": \"5da862a5e07d934a1c2efd65\"\n\t\t \n}\n"
+						},
+						"url": {
+							"raw": "http://localhost:3002/questions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"questions"
+							]
+						},
+						"description": "créer une nouvelle question liée à un sujet"
+					},
+					"response": []
+				},
+				{
+					"name": "GET /questions/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/questions/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"questions",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5dc9806480e25f57149501e5"
+								}
+							]
+						},
+						"description": "récupérer une question avec titre du sujet"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /questions/:id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"question\" : \"Question ooooooo ?\",\n\t\"answers\": [\n\t\t{\n\t\t\t\"answer\": \"VRAI\",\n\t\t\t\"is_correct\": true\n\t\t},\n\t\t{\n\t\t\t\"answer\": \"FAUX\",\n\t\t\t\"is_correct\": false\n\t\t}\n\t\t],\n\t\t \"user_id\": \"5dc9802680e25f57149501e4\",\n\t\t \"subject_id\": \"5da862a5e07d934a1c2efd65\"\n\t\t \n}\n"
+						},
+						"url": {
+							"raw": "http://localhost:3002/questions/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"questions",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5dc9806480e25f57149501e5"
+								}
+							]
+						},
+						"description": "mettre à jour une question"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3002/users/5da86c4bffb4e888b2f3ba83 Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/users/5da86c4bffb4e888b2f3ba83",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"users",
+								"5da86c4bffb4e888b2f3ba83"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "subjects",
+			"item": [
+				{
+					"name": "GET /subjects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/subjects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"subjects"
+							]
+						},
+						"description": "liste des sujets avec nombre de questions"
+					},
+					"response": []
+				},
+				{
+					"name": "POST /subjects",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"JavaScript\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3002/subjects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"subjects"
+							]
+						},
+						"description": "créer un nouveau sujet"
+					},
+					"response": []
+				},
+				{
+					"name": "GET /subjects/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/subjects/:id_subject",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"subjects",
+								":id_subject"
+							],
+							"variable": [
+								{
+									"key": "id_subject",
+									"value": "5da862a5e07d934a1c2efd65"
+								}
+							]
+						},
+						"description": "récupérer un sujet avec liste des questions"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /subjects/:id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Javascript\"\n\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3002/subjects/:id_subject",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"subjects",
+								":id_subject"
+							],
+							"variable": [
+								{
+									"key": "id_subject",
+									"value": "5dc827f7d1c7c95650dd500b"
+								}
+							]
+						},
+						"description": "mettre à jour un sujet"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /subjects/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3002/subjects/:id_subject",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"subjects",
+								":id_subject"
+							],
+							"variable": [
+								{
+									"key": "id_subject",
+									"value": "5dc827f7d1c7c95650dd500b"
+								}
+							]
+						},
+						"description": "supprimer un sujet"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "auth",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "573599c5-3c2e-4b57-9400-6df62af5f322",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a24d9b64-4170-445f-b2cc-f7d94c1ecb6b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
