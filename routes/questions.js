@@ -27,14 +27,28 @@ router.get('/', function (req, res, next) {
 });
 
 /* créer une nouvelle question liée à un sujet  */
-router.post('/', (req, res) =>{
+router.post('/', (req, res, next) =>{
   const  question = new Question(req.body);
-  question.save((err,question) => res.json(question))
+  question.save((err,question) => res.json(question));
+  req.question_id = question.id;
+  req.subject_id = req.body.subject_id;
+  next();
+}, (req, res) => {
+  /*
+  Subject.findById(req.subject_id, (err, sub) =>{ 
+    sub.questions.push(req.question_id);
+    sub.save();
+  });
+  */
+  Subject.updateOne(
+    { _id : ObjectId(req.subject_id) }, {$push: { questions: req.question_id }},
+    (err, subject) => console.log(subject)
+  );
 });
 
 /* récupérer une question avec titre du sujet */
 router.get('/:id', (req, res) => {
-  Question.findById(req.params.id).exec((err,question) => res.json(question));
+  Question.findById(req.params.id).populate('subject_id').exec((err,question) => res.json(question));
 });
 
 /* mettre à jour une question */

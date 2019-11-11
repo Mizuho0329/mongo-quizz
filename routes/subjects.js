@@ -27,7 +27,7 @@ router.get('/', (req, res, next) => {
 
 /* GET a subject by subject ID */
 router.get('/:id', (req, res, next) => {
-  Subject.findById(req.params.id)
+  Subject.findById(req.params.id).populate('questions')
     .exec((err, subject) => res.json(subject));
 })
 
